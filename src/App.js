@@ -41,6 +41,10 @@ function App() {
               temp={day.temp}
               precip={day.pop}
               day={moment(day.valid_date, "YYYY-MM-DD").format("dddd")}
+              setSelectedDay={() =>
+                setWeatherInfo({ ...weatherInfo, selectedDay: day })
+              }
+              isActive={day === selectedDay}
             />
           </Col>
         ))}

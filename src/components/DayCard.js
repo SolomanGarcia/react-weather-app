@@ -30,9 +30,19 @@ const DayWrapper = styled.article`
   }
 `;
 
-const DayCard = ({ day, temp, icon, description, high, low, precip }) => {
+const DayCard = ({
+  day,
+  temp,
+  icon,
+  description,
+  high,
+  low,
+  precip,
+  setSelectedDay,
+  isActive
+}) => {
   return (
-    <DayWrapper>
+    <DayWrapper onClick={setSelectedDay}>
       <Card>
         <CardHeader>{day}</CardHeader>
         <CardBody>
