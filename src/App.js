@@ -12,7 +12,7 @@ function App() {
     // days: [],
     location: "Denver, CO",
     days: sampleData.data,
-    selectedDay: {},
+    selectedDay: null,
     searchTerm: ""
   });
 
@@ -49,7 +49,26 @@ function App() {
       </Row>
       <Row>
         <Col>
-          <DayDetails />
+          {selectedDay ? (
+            <DayDetails
+              icon={selectedDay.weather.icon}
+              description={selectedDay.weather.description}
+              high={selectedDay.high_temp}
+              low={selectedDay.low_temp}
+              temp={selectedDay.temp}
+              precip={selectedDay.pop}
+              selectedDay={moment(selectedDay.valid_date, "YYYY-MM-DD").format(
+                "lll"
+              )}
+              humidity={selectedDay.rh}
+              appHigh={selectedDay.app_max_temp}
+              appLow={selectedDay.app_min_temp}
+              windDir={selectedDay.wind_cdir_full}
+              windSpd={selectedDay.wind_spd}
+            />
+          ) : (
+            <h2> Click on a day above to get day details!</h2>
+          )}
         </Col>
       </Row>
     </Container>
