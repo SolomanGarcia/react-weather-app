@@ -1,6 +1,7 @@
-import react from "react";
+import React from "react";
+import { FormGroup, Label, Input, Button } from "reactstrap";
 
-const SearchBar = () => {
+const SearchBar = ({ searchTerm, handleInputChange, handleFormSubmit }) => {
   return <h2>Im the SearchBar</h2>;
 };
 
