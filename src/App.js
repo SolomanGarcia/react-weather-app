@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Row, Col } from "reactstrap";
 import sampleData from "./data/sample.json";
+import SearchBar from "./components/SearchBar";
+import DayCard from "./components/DayCard";
+import DayDetails from "./components/DayDetails";
 
 function App() {
+  const [weatherInfo, setWeatherInfo] = useState({
+    // location: "",
+    // days: [],
+    location: "Denver, CO",
+    days: sampleData.data,
+    selectedDay: {},
+    searchTerm: ""
+  });
+
   return (
     <Container>
       <Row>
@@ -10,19 +22,21 @@ function App() {
           <h1>Weather for [city, state]</h1>
         </Col>
         <Col md={5}>
-          <h2>Search bar goes here</h2>
+          <h2>
+            <SearchBar />
+          </h2>
         </Col>
       </Row>
       <Row>
         {sampleData.data.map((day) => (
           <Col>
-            <span>Day goes here</span>
+            <DayCard />
           </Col>
         ))}
       </Row>
       <Row>
         <Col>
-          <h2>Selected day goes here</h2>
+          <DayDetails />
         </Col>
       </Row>
     </Container>

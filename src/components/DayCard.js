@@ -1,7 +1,7 @@
 import react from "react";
 
 const DayCard = () => {
-  return <span>DayCard</span>;
+  return <span>Daycard</span>;
 };
 
 export default DayCard;
