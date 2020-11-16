@@ -25,9 +25,7 @@ function App() {
           <h1>Weather for {location}</h1>
         </Col>
         <Col md={5}>
-          <h2>
-            <SearchBar />
-          </h2>
+          <SearchBar />
         </Col>
       </Row>
       <Row>

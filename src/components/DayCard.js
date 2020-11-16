@@ -2,7 +2,7 @@ import React from "react";
 import { Card, CardHeader, CardBody } from "reactstrap";
 import styled from "styled-components";
 
-const gray = "rgba(0,0,0,0.125)";
+const gray = "rgba(0,0,0,.125)";
 const teal = "teal";
 const border = `2px solid ${gray}`;
 const tealBorder = `2px solid ${teal}`;
@@ -20,10 +20,13 @@ const DayWrapper = styled.article`
     width: 85px;
   }
   .card {
-    border: ${border};
+    border: ${(props) => (props.isActive ? tealBorder : border)};
   }
   .card-header {
+    background: ${(props) => (props.isActive ? teal : gray)};
     border-bottom: ${border};
+    color: ${(props) => (props.isActive ? "white" : null)};
+    font-weight: 700;
   }
   .card-body {
     padding: 20px 10px;
@@ -42,7 +45,7 @@ const DayCard = ({
   isActive
 }) => {
   return (
-    <DayWrapper onClick={setSelectedDay}>
+    <DayWrapper onClick={setSelectedDay} isActive={isActive}>
       <Card>
         <CardHeader>{day}</CardHeader>
         <CardBody>
