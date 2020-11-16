@@ -57,9 +57,7 @@ function App() {
               low={selectedDay.low_temp}
               temp={selectedDay.temp}
               precip={selectedDay.pop}
-              selectedDay={moment(selectedDay.valid_date, "YYYY-MM-DD").format(
-                "lll"
-              )}
+              day={moment(selectedDay.valid_date, "YYYY-MM-DD").format("lll")}
               humidity={selectedDay.rh}
               appHigh={selectedDay.app_max_temp}
               appLow={selectedDay.app_min_temp}
