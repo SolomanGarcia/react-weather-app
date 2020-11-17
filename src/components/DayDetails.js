@@ -13,7 +13,7 @@ const DayDetails = ({
   precip,
   temp,
   windDir,
-  windSpd
+  windSpeed
 }) => {
   return (
     <DetailsWrapper>
@@ -39,7 +39,7 @@ const DayDetails = ({
         <strong>Relative Humidity:</strong> {humidity}%
       </p>
       <p>
-        <strong>Wind Speed:</strong> {(windSpd * 2.237).toFixed(2)}mph |{" "}
+        <strong>Wind Speed:</strong> {(windSpeed * 2.237).toFixed(2)}mph |{" "}
         <strong>Wind Direction:</strong>{" "}
         {windDir[0].toUpperCase() + windDir.substring(1)}
       </p>
