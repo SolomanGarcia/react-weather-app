@@ -1,5 +1,5 @@
 import React from "react";
-import { FormGroup, Label, Input, Button, Form } from "reactstrap";
+import { FormGroup, Label, Input, Button } from "reactstrap";
 import { FormWrapper } from "../styles";
 
 const SearchBar = ({ searchTerm, handleInputChange, handleFormSubmit }) => {
