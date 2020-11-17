@@ -1,9 +1,10 @@
 import React from "react";
 import { FormGroup, Label, Input, Button, Form } from "reactstrap";
+import { FormWrapper } from "../styles";
 
 const SearchBar = ({ searchTerm, handleInputChange, handleFormSubmit }) => {
   return (
-    <Form inline onSubmit={handleFormSubmit}>
+    <FormWrapper inline onSubmit={handleFormSubmit}>
       <FormGroup>
         <Label for="searchTerm" hidden>
           Search by Location:
@@ -18,7 +19,7 @@ const SearchBar = ({ searchTerm, handleInputChange, handleFormSubmit }) => {
         />
       </FormGroup>
       <Button>Search</Button>
-    </Form>
+    </FormWrapper>
   );
 };
 
