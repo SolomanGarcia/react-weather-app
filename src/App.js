@@ -18,6 +18,15 @@ function App() {
 
   const { location, days, selectedDay, searchTerm } = weatherInfo;
 
+  const handleInputChange = (e) => {
+    setWeatherInfo({ ...weatherInfo, searchTerm: e.target.value });
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    getWeather(searchTerm);
+  };
+
   return (
     <Container>
       <Row>
@@ -25,7 +34,11 @@ function App() {
           <h1>Weather for {location}</h1>
         </Col>
         <Col md={5}>
-          <SearchBar />
+          <SearchBar
+            searchTerm={searchTerm}
+            handleInputChange={handleInputChange}
+            handleFormSubmit={handleFormSubmit}
+          />
         </Col>
       </Row>
       <Row>

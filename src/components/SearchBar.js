@@ -3,7 +3,7 @@ import { FormGroup, Label, Input, Button, Form } from "reactstrap";
 
 const SearchBar = ({ searchTerm, handleInputChange, handleFormSubmit }) => {
   return (
-    <Form>
+    <Form inline onSubmit={handleFormSubmit}>
       <FormGroup>
         <Label for="searchTerm" hidden>
           Search by Location:
