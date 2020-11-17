@@ -1,71 +1,42 @@
 import React from "react";
-import { Card, CardHeader, CardBody } from "reactstrap";
-import styled from "styled-components";
-
-const gray = "rgba(0,0,0,.125)";
-const teal = "teal";
-const border = `2px solid ${gray}`;
-const tealBorder = `2px solid ${teal}`;
-
-const DayWrapper = styled.article`
-  text-align: center;
-  :hover {
-    cursor: pointer;
-    .card {
-      border: ${tealBorder};
-    }
-  }
-  img {
-    padding-bottom: 15px;
-    width: 85px;
-  }
-  .card {
-    border: ${(props) => (props.isActive ? tealBorder : border)};
-  }
-  .card-header {
-    background: ${(props) => (props.isActive ? teal : gray)};
-    border-bottom: ${border};
-    color: ${(props) => (props.isActive ? "white" : null)};
-    font-weight: 700;
-  }
-  .card-body {
-    padding: 20px 10px;
-  }
-`;
+import { Col, Card, CardHeader, CardBody } from "reactstrap";
+import { DayWrapper } from "../styles";
 
 const DayCard = ({
+  isSelected,
+  selectDay,
   day,
   temp,
   icon,
   description,
   high,
   low,
-  precip,
-  setSelectedDay,
-  isActive
+  precip
 }) => {
   return (
-    <DayWrapper onClick={setSelectedDay} isActive={isActive}>
-      <Card>
-        <CardHeader>{day}</CardHeader>
-        <CardBody>
-          <h2>{temp.toFixed(1)}°</h2>
-          <img
-            src={`${process.env.PUBLIC_URL}/icons/${icon}.png`}
-            alt={description}
-          />
-          <p>
-            <strong>High:</strong> {high.toFixed(1)}°
-          </p>
-          <p>
-            <strong>Low:</strong> {low.toFixed(1)}°
-          </p>
-          <p>
-            <strong>Precip:</strong> {precip}%
-          </p>
-        </CardBody>
-      </Card>
-    </DayWrapper>
+    <Col>
+      <DayWrapper isSelected={isSelected} onClick={selectDay}>
+        <Card>
+          <CardHeader>{day}</CardHeader>
+          <CardBody>
+            <h3>{temp.toFixed(1)}°</h3>
+            <img
+              src={`${process.env.PUBLIC_URL}/icons/${icon}.png`}
+              alt={description}
+            />
+            <p>
+              <strong>High:</strong> {high.toFixed(1)}°
+            </p>
+            <p>
+              <strong>Low:</strong> {low.toFixed(1)}°
+            </p>
+            <p>
+              <strong>Precip:</strong> {precip}%
+            </p>
+          </CardBody>
+        </Card>
+      </DayWrapper>
+    </Col>
   );
 };
 

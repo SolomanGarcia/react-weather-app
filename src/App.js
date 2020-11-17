@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Container, Row, Col } from "reactstrap";
+import { Row, Col } from "reactstrap";
+import { Wrapper } from "./styles";
 import moment from "moment";
 import API from "./utils/API";
 import SearchBar from "./components/SearchBar";
@@ -45,7 +46,8 @@ function App() {
   };
 
   const handleInputChange = (e) => {
-    setWeatherInfo({ ...weatherInfo, searchTerm: e.target.value });
+    const { name, value } = e.target;
+    setWeatherInfo({ ...weatherInfo, [name]: value });
   };
 
   const handleFormSubmit = (e) => {
@@ -54,13 +56,11 @@ function App() {
   };
 
   return (
-    <Container>
+    <Wrapper>
       <Row>
         <Col md={7}>
           <h1>
-            {location
-              ? "Weather Info for " + location + ":"
-              : "Search by Location:"}
+            {location ? "Weather Info for " + location : "Search by Location:"}
           </h1>
         </Col>
         <Col md={5}>
@@ -72,47 +72,60 @@ function App() {
         </Col>
       </Row>
       <Row>
-        {days.map((day) => (
-          <Col key={day.valid_date}>
-            <DayCard
-              icon={day.weather.icon}
-              description={day.weather.description}
-              high={day.high_temp}
-              low={day.low_temp}
-              temp={day.temp}
-              precip={day.pop}
-              day={moment(day.valid_date, "YYYY-MM-DD").format("dddd")}
-              setSelectedDay={() =>
-                setWeatherInfo({ ...weatherInfo, selectedDay: day })
-              }
-              isActive={day === selectedDay}
-            />
-          </Col>
-        ))}
+        {days.length ? (
+          <>
+            {days.map((day) => (
+              <DayCard
+                key={day.ts}
+                day={moment(day.valid_date, "YYYY-MM-DD").format("dddd")}
+                temp={day.temp}
+                high={day.high_temp}
+                low={day.low_temp}
+                icon={day.weather.icon}
+                description={day.weather.description}
+                precip={day.pop}
+                isSelected={day === selectedDay}
+                selectDay={() =>
+                  setWeatherInfo({ ...weatherInfo, selectedDay: day })
+                }
+              />
+            ))}
+          </>
+        ) : (
+          <div className="d-flex loading-spinner">
+            <div className="spinner-border" role="status">
+              <span className="sr-only">Loading...</span>
+            </div>
+          </div>
+        )}
       </Row>
       <Row>
         <Col>
           {selectedDay ? (
             <DayDetails
+              day={moment(selectedDay.valid_date, "YYYY-MM-DD").format(
+                "dddd, MMMM Do, YYYY"
+              )}
+              temp={selectedDay.temp}
+              high={selectedDay.high_temp}
+              appHigh={selectedDay.app_max_temp}
+              low={selectedDay.low_temp}
+              appLow={selectedDay.app_min_temp}
               icon={selectedDay.weather.icon}
               description={selectedDay.weather.description}
-              high={selectedDay.high_temp}
-              low={selectedDay.low_temp}
-              temp={selectedDay.temp}
               precip={selectedDay.pop}
-              day={moment(selectedDay.valid_date, "YYYY-MM-DD").format("lll")}
               humidity={selectedDay.rh}
-              appHigh={selectedDay.app_max_temp}
-              appLow={selectedDay.app_min_temp}
+              windSpeed={selectedDay.wind_spd}
               windDir={selectedDay.wind_cdir_full}
-              windSpd={selectedDay.wind_spd}
             />
           ) : (
-            <h2> Click on a day above to get day details!</h2>
+            <h3>
+              {days.length ? "Click on a day above to view details!" : null}
+            </h3>
           )}
         </Col>
       </Row>
-    </Container>
+    </Wrapper>
   );
 }
 
