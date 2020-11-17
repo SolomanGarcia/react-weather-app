@@ -1,7 +1,7 @@
 import React from "react";
 import { Col, Card, CardHeader, CardBody } from "reactstrap";
 import { DayWrapper } from "../styles";
-//test
+
 const DayCard = ({
   isSelected,
   selectDay,
